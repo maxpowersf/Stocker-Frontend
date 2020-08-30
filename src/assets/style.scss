@@ -1,0 +1,18 @@
+.loader {
+    margin: 0 auto;
+    width: 60px;
+    position: absolute;
+    display: block;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    @include transform-translate-y(-50%);
+    text-align: center;
+    top: 50%;
+
+    &:before {
+        content: '';
+        display: block;
+        padding-top: 100%;
+    }
+}

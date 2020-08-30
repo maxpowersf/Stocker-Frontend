@@ -1,0 +1,18 @@
+<mat-card>
+    <mat-card-title>
+        <div class="header">
+            <div class="title">
+                {{title}}
+            </div>
+            <div *ngIf="canAdd" class="actions">
+                <button mat-fab aria-label="Add new registry" matTooltip="Add" (click)="addAction()">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+        </div>
+    </mat-card-title>
+    <mat-card-subtitle>{{subtitle}}</mat-card-subtitle>
+    <mat-card-content>
+        <ng-content></ng-content>
+    </mat-card-content>
+</mat-card>

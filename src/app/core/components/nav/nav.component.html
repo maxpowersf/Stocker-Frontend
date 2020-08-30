@@ -1,0 +1,38 @@
+<mat-toolbar color="primary" class="navbar mat-elevation-z5">
+    <mat-toolbar-row>
+        <button type="button" aria-label="Toggle sidenav" mat-mini-fab (click)="drawer.toggle()">
+            <mat-icon aria-label="Example icon-button with a heart icon">more_vert</mat-icon>
+        </button>
+        <mat-icon class="title">home</mat-icon>
+        <span [routerLink]="['']">
+            <h2 class="title"> Stocker</h2>
+        </span>
+    </mat-toolbar-row>
+    <mat-progress-bar *ngIf="loading" class="progress-bar" mode="indeterminate" color="accent"></mat-progress-bar>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container">
+
+    <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [mode]="'over'" [opened]="(isHandset$ | async)">
+        <div color="primary" class="profile-section"></div>
+        <mat-nav-list>
+            <h2 matSubheader>Management</h2>
+            <a mat-list-item [routerLink]="['categories']" (click)="drawer.toggle()">
+                <mat-icon class="icon_menu">build</mat-icon> Categories
+            </a>
+            <a mat-list-item [routerLink]="['products']" (click)="drawer.toggle()">
+                <mat-icon class="icon_menu">storefront</mat-icon> Products
+            </a>
+            <a mat-list-item [routerLink]="['products']" (click)="drawer.toggle()">
+                <mat-icon class="icon_menu">shopping_cart</mat-icon> Grocery List
+            </a>
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <main class="margin-container">
+            <router-outlet></router-outlet>
+        </main>
+    </mat-sidenav-content>
+
+</mat-sidenav-container>

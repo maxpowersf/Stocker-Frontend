@@ -1,0 +1,19 @@
+<mat-card class="form-card">
+    <mat-card-title>
+        <div class="header">
+            <div class="title">
+                {{info.title}}
+            </div>
+        </div>
+    </mat-card-title>
+    <mat-card-subtitle>{{info.subtitle}}</mat-card-subtitle>
+    <mat-card-content>
+        <ng-content></ng-content>
+    </mat-card-content>
+    <mat-card-actions>
+        <div class="actions">
+            <button mat-flat-button (click)="goToList()">Back</button>
+            <button mat-raised-button color="primary" (click)="emitSubmit()">{{info.submitText}}</button>
+        </div>
+    </mat-card-actions>
+</mat-card>

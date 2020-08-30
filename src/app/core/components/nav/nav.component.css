@@ -1,0 +1,46 @@
+.profile-section {
+    background: #673ab7;
+    min-height: 20px;
+  }
+  
+  .sidenav-container {
+    height: 100%;
+  }
+  
+  .sidenav {
+    width: 250px;
+    margin-top:64px;
+  }
+  
+  .title{
+    padding-left: 20px;
+    cursor: pointer;
+  }
+  
+  .navbar{
+    position: fixed;
+    top:0;
+    z-index: 9;
+    flex-direction: column-reverse;
+  }
+  
+  span{
+    cursor: pointer;
+  }
+  
+  .margin-container{
+    width: 75%;
+    margin: auto;
+    margin-top: 100px;
+  }
+  
+  .progress-bar{
+    z-index: 15;
+    display: flex;
+  }
+  
+  .icon_menu{
+    padding-right: 15px;
+    margin-right: 5px;
+    cursor: pointer;
+  }

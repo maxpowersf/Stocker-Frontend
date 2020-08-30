@@ -1,0 +1,3 @@
+<list-layout [title]="'Categories'" [subtitle]="'List of categories'" [canAdd]="true">
+    <app-table *ngIf="data.length>0" [tableData]="tableData"></app-table>
+</list-layout>

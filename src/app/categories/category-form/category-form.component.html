@@ -1,1 +1,7 @@
-<p>category-form works!</p>
+<form-layout [info]="formInfo" (submitEvent)="onSubmit()">
+    <form [formGroup]="categoryForm">
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Ingrese el nombre de la categoría" [formControl]="name">
+        </mat-form-field>
+    </form>
+</form-layout>

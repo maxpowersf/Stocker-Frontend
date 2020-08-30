@@ -1,0 +1,15 @@
+.full-width {
+    width: 100%;
+}
+
+.form-card {
+    width: 50%;
+    margin: auto;
+}
+
+.actions {
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    padding-bottom: 20px;
+}

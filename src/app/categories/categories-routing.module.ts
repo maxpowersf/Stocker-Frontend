@@ -9,7 +9,9 @@ const routes: Routes = [
   {
     path: '',
     component: CategoryListComponent,
-    resolve: {categories : CategoriesResolver}
+    resolve: {
+      categories : CategoriesResolver
+    }
   },
   {
     path: 'new',
@@ -19,7 +21,7 @@ const routes: Routes = [
     path: ':id/edit',
     component: CategoryFormComponent,
     resolve: {
-      matchtype: CategoryResolver
+      category: CategoryResolver
     }
   }
 ];

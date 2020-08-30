@@ -1,0 +1,43 @@
+<mat-card class="form-card">
+    <mat-card-title>
+        <div class="header">
+            <div class="title">
+                Product
+            </div>
+        </div>
+    </mat-card-title>
+    <mat-card-subtitle>{{isEditing ? '' : 'New product'}}</mat-card-subtitle>
+    <mat-card-content>
+        <form [formGroup]="productForm">
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Ingrese el nombre del producto" [formControl]="name">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Ingrese la url de la foto" (change)="fillPhoto($event)" [formControl]="photo">
+            </mat-form-field>
+            <img alt="photo" src="{{photoUrl}}" class="photo">
+            <mat-form-field class="full-width">
+                <mat-select placeholder="Categoría" [formControl]="category">
+                  <mat-option *ngFor="let category of categories" [value]="category.id">
+                    {{category.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            <mat-form-field class="full-width">
+                <input matInput type="number" placeholder="Ingrese el valor" [formControl]="stock">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input matInput type="number" placeholder="Ingrese el valor" [formControl]="minimumAccepted">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input matInput type="number" placeholder="Ingrese el valor" [formControl]="minimumRequired">
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <div class="actions">
+            <button mat-flat-button (click)="goToList()">Back</button>
+            <button mat-raised-button color="primary" (click)="onSubmit()">{{isEditing ? 'Update' : 'Save'}}</button>
+        </div>
+    </mat-card-actions>
+</mat-card>

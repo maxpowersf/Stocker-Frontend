@@ -28,8 +28,7 @@
               "src/styles.css"
             ],
             "scripts": [
-              "node_modules/jquery/dist/jquery.min.js",
-              "src/assets/common.js"
+              "node_modules/jquery/dist/jquery.min.js"
             ]
           },
           "configurations": {

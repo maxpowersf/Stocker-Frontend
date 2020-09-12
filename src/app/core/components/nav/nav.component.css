@@ -44,3 +44,9 @@
     margin-right: 5px;
     cursor: pointer;
   }
+
+  @media (max-width: 768px) {
+    .margin-container {
+      width: 90%;
+    }
+  }

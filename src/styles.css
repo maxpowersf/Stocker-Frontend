@@ -13,3 +13,40 @@ body {
     margin: 0; 
     font-family: Roboto, "Helvetica Neue", sans-serif; 
 }
+
+table {
+    width: 100%;
+}
+
+.form-card{
+    width: 50%;
+    margin: auto;
+}
+
+@media (max-width: 768px) {
+    .form-card {
+        width: 100%;
+    }
+}
+
+div.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+div.actions{
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    padding-bottom: 20px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.clickable:hover{
+    background-color: rgba(0, 0, 0, .05);
+    cursor: pointer;
+}

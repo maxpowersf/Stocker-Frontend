@@ -1,11 +1,3 @@
-table {
-    width: 100%;
-}
-.header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
 .mat-header-cell,
 .mat-cell{
     text-align: center;
@@ -18,6 +10,9 @@ td.left{
 th.actions {
     width: 140px;
 }
+.cell-primary{
+    width: 250px;
+}
 .cell-number{
     width: 75px;
 }
@@ -26,8 +21,4 @@ th.actions {
 }
 .mat-icon-button{
     margin-top: 5px;
-}
-.clickable:hover{
-    background-color: rgba(0, 0, 0, .05);
-    cursor: pointer;
 }

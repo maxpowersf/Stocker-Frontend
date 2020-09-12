@@ -5,6 +5,8 @@ import { ProductsResolver } from './resolvers/products.resolver';
 import { ProductFormComponent } from './product-form/product-form.component';
 import { ProductResolver } from './resolvers/product.resolver';
 import { CategoriesResolver } from '../categories/resolvers/categories.resolver';
+import { ProductGroceryComponent } from './product-grocery/product-grocery.component';
+import { GroceriesResolver } from './resolvers/groceries.resolver';
 
 const routes: Routes = [
   {
@@ -12,6 +14,13 @@ const routes: Routes = [
     component: ProductListComponent,
     resolve: {
       products : ProductsResolver
+    }
+  },
+  {
+    path: 'groceries',
+    component: ProductGroceryComponent,
+    resolve: {
+      products: GroceriesResolver
     }
   },
   {

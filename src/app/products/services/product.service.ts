@@ -3,6 +3,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { Product } from '../models/product.model';
+import { ProductsArray } from '../models/productsArray.model';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json-patch+json'})
@@ -18,6 +19,10 @@ export class ProductService {
     private httpClient: HttpClient
   ) { }
 
+  public getGroceryList(): Observable<Product[]> {
+    return this.httpClient.get<Product[]>(this.productUrl + '/true');
+  }
+
   public getAll(): Observable<Product[]> {
     return this.httpClient.get<Product[]>(this.productUrl);
   }
@@ -32,6 +37,10 @@ export class ProductService {
 
   public update(product: Product) {
     return this.httpClient.put(this.productUrl, product, httpOptions);
+  }
+
+  public updateAll(products: ProductsArray) {
+    return this.httpClient.put(this.productUrl + '/updateall', products, httpOptions);
   }
 
   public delete(id: number) {

@@ -55,39 +55,37 @@ export class ProductGroceryComponent implements OnInit {
   });
 
   saveAction = () => {
-    /*this.snackBar.openFromComponent(PizzaPartyComponent, {
-      duration: 1000,
-    });*/
-
-    if (!this.groceriesForm.valid) { 
+    if (!this.groceriesForm.valid) {
       this.snackBar.open('Incomplete fields', '', { 
+        panelClass: 'sb-warning',
         duration: 2000,
         verticalPosition: 'top',
         horizontalPosition: 'right'
       });
 
-      return; 
+      return;
     }
 
     const products: ProductsArray = new ProductsArray();
     const productsStock = this.groceriesForm.get('productsForm') as FormArray;
     productsStock.controls.forEach((element, index) => {
-      if(element.get('newStock').value > 0) {
+      if (element.get('newStock').value > 0) {
         products.product.push(this.processProductsStock(element));
       }
     });
 
-    if(products.product.length > 0){
-    this.productService.updateAll(products)
-      .subscribe(() => {
-        this.getGroceriesList();
+    if (products.product.length > 0) {
+      this.productService.updateAll(products)
+        .subscribe(() => {
+          this.getGroceriesList();
 
-        this.snackBar.open('Save successful', '', { 
-          duration: 2000,
-          verticalPosition: 'top',
-          horizontalPosition: 'right'
+          this.snackBar.open('Save successful', '', { 
+            panelClass: 'sb-success',
+            duration: 2000,
+            verticalPosition: 'top',
+            horizontalPosition: 'right'
+          });
         });
-      });
     }
   }
 
@@ -107,14 +105,3 @@ export class ProductGroceryComponent implements OnInit {
   }
 
 }
-
-/*@Component({
-  selector: 'snack-bar-component-example-snack',
-  templateUrl: 'snack-bar-component-example-snack.html',
-  styles: [`
-    .example-pizza-party {
-      color: hotpink;
-    }
-  `],
-})
-export class PizzaPartyComponent {}*/

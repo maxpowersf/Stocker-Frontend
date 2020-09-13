@@ -67,6 +67,7 @@ export class ProductStockComponent implements OnInit {
   saveAction = () => {
     if (!this.stockForm.valid) { 
       this.snackBar.open('Incomplete fields', '', { 
+        panelClass: 'sb-warning',
         duration: 2000,
         verticalPosition: 'top',
         horizontalPosition: 'right'
@@ -87,6 +88,7 @@ export class ProductStockComponent implements OnInit {
           this.getProductsList();
 
           this.snackBar.open('Save successful', '', { 
+            panelClass: 'sb-success',
             duration: 2000,
             verticalPosition: 'top',
             horizontalPosition: 'right'

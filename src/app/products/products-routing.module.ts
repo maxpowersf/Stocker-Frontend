@@ -7,6 +7,7 @@ import { ProductResolver } from './resolvers/product.resolver';
 import { CategoriesResolver } from '../categories/resolvers/categories.resolver';
 import { ProductGroceryComponent } from './product-grocery/product-grocery.component';
 import { GroceriesResolver } from './resolvers/groceries.resolver';
+import { ProductStockComponent } from './product-stock/product-stock.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,13 @@ const routes: Routes = [
     component: ProductGroceryComponent,
     resolve: {
       products: GroceriesResolver
+    }
+  },
+  {
+    path: 'stock',
+    component: ProductStockComponent,
+    resolve: {
+      products : ProductsResolver
     }
   },
   {

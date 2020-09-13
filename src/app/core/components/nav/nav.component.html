@@ -17,14 +17,18 @@
         <div color="primary" class="profile-section"></div>
         <mat-nav-list>
             <h2 matSubheader>Management</h2>
+            <a mat-list-item [routerLink]="['products/stock']" (click)="drawer.toggle()">
+                <mat-icon class="icon_menu">storefront</mat-icon> Stock
+            </a>
+            <a mat-list-item [routerLink]="['products/groceries']" (click)="drawer.toggle()">
+                <mat-icon class="icon_menu">shopping_cart</mat-icon> Grocery List
+            </a>
+            <h2 matSubheader>Admin</h2>
             <a mat-list-item [routerLink]="['categories']" (click)="drawer.toggle()">
                 <mat-icon class="icon_menu">build</mat-icon> Categories
             </a>
             <a mat-list-item [routerLink]="['products']" (click)="drawer.toggle()">
-                <mat-icon class="icon_menu">storefront</mat-icon> Products
-            </a>
-            <a mat-list-item [routerLink]="['products/groceries']" (click)="drawer.toggle()">
-                <mat-icon class="icon_menu">shopping_cart</mat-icon> Grocery List
+                <mat-icon class="icon_menu">category</mat-icon> Products
             </a>
         </mat-nav-list>
     </mat-sidenav>

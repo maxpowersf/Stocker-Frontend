@@ -8,7 +8,7 @@ td.left{
     padding-left: 20px;
 }
 th.actions {
-    width: 140px;
+    width: 110px;
 }
 .cell-number{
     width: 75px;
@@ -33,4 +33,12 @@ input[type=number] {
 }
 .warning {
     background-color: #d82508c4;
+}
+@media (max-width: 768px){
+    th.actions {
+        width: 80px;
+    }
+    td.mat-cell:last-of-type {
+        padding: 0;
+    }
 }

@@ -36,7 +36,7 @@ export class ProductGroceryComponent implements OnInit {
   generateForm = (): FormGroup => {
     let productsListArray = [];
     this.products.forEach((product) => {
-      productsListArray.push(this.productModelCreate(product.id))
+      productsListArray.push(this.productModelCreate(product.id, product.stock))
     });
 
     return this.groceriesModelCreate(productsListArray);
@@ -48,8 +48,9 @@ export class ProductGroceryComponent implements OnInit {
     });
   }
 
-  productModelCreate = (productId: number) => this.fb.group({
+  productModelCreate = (productId: number, stock: number) => this.fb.group({
     id: [productId],
+    stock: [stock],
     newStock: [0]
   });
 
@@ -80,7 +81,6 @@ export class ProductGroceryComponent implements OnInit {
     this.productService.updateAll(products)
       .subscribe(() => {
         this.getGroceriesList();
-        this.groceriesForm = this.generateForm();
 
         this.snackBar.open('Save successful', '', { 
           duration: 2000,
@@ -94,12 +94,17 @@ export class ProductGroceryComponent implements OnInit {
   processProductsStock = (productStock: AbstractControl) => {
     let product: Product = new Product();
     product.id = productStock.get('id').value;
-    product.stock = productStock.get('newStock').value;
+    product.stock = productStock.get('stock').value + productStock.get('newStock').value;
 
     return product;
   }
 
-  getGroceriesList = () => this.productService.getGroceryList().subscribe((res) => this.products = res);
+  getGroceriesList = () => {
+    this.productService.getGroceryList().subscribe((res) => {
+      this.products = res;
+      this.groceriesForm = this.generateForm();
+    });
+  }
 
 }
 

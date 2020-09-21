@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Product } from '../models/product.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProductService } from '../services/product.service';
 import { FormGroup, FormBuilder, FormArray, AbstractControl } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
+import { MatPaginator, MatSnackBar, MatTableDataSource } from '@angular/material';
 import { ProductsArray } from '../models/productsArray.model';
 
 @Component({
@@ -14,9 +14,12 @@ import { ProductsArray } from '../models/productsArray.model';
 export class ProductGroceryComponent implements OnInit {
 
   displayedColumns: string[] = ['photo', 'name', 'stock', 'actions'];
+  dataSource;
 
   groceriesForm: FormGroup;
   products: Product[];
+
+  @ViewChild(MatPaginator, null) paginator: MatPaginator;
 
   constructor(
     private router: Router,
@@ -31,6 +34,14 @@ export class ProductGroceryComponent implements OnInit {
   ngOnInit() {
     this.groceriesForm = this.generateForm();
     this.groceriesForm.get('productsForm').valueChanges.subscribe(productsForm => { console.log('productsForm', productsForm) });
+
+    this.dataSource = new MatTableDataSource(this.products);
+    this.dataSource.paginator = this.paginator;
+  }
+
+  applyFilter = (event: Event) => {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   generateForm = (): FormGroup => {

@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Product } from '../models/product.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../services/product.service';
-import { MatSnackBar } from '@angular/material';
+import { MatPaginator, MatSnackBar, MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-product-list',
@@ -12,8 +12,11 @@ import { MatSnackBar } from '@angular/material';
 export class ProductListComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'name', 'photo', 'category', 'stock', 'minimumAccepted', 'minimumRequired', 'actions'];
+  dataSource;
 
   products: Product[];
+
+  @ViewChild(MatPaginator, null) paginator: MatPaginator;
 
   constructor(
     private router: Router,
@@ -25,7 +28,13 @@ export class ProductListComponent implements OnInit {
    }
 
   ngOnInit() {
-    
+    this.dataSource = new MatTableDataSource(this.products);
+    this.dataSource.paginator = this.paginator;
+  }
+
+  applyFilter = (event: Event) => {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   addAction = () => this.router.navigate(['new'], { relativeTo: this.route });

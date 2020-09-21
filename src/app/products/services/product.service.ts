@@ -20,7 +20,7 @@ export class ProductService {
   ) { }
 
   public getGroceryList(): Observable<Product[]> {
-    return this.httpClient.get<Product[]>(this.productUrl + '/true');
+    return this.httpClient.get<Product[]>(this.productUrl + '/true/true');
   }
 
   public getAll(): Observable<Product[]> {

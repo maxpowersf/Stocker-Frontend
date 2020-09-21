@@ -78,9 +78,9 @@ export class ProductStockComponent implements OnInit {
     if (!this.stockForm.valid) { 
       this.snackBar.open('Incomplete fields', '', { 
         panelClass: 'sb-warning',
-        duration: 2000,
-        verticalPosition: 'top',
-        horizontalPosition: 'right'
+        duration: 1000,
+        verticalPosition: 'bottom',
+        horizontalPosition: 'center'
       });
 
       return; 
@@ -99,9 +99,9 @@ export class ProductStockComponent implements OnInit {
 
           this.snackBar.open('Save successful', '', { 
             panelClass: 'sb-success',
-            duration: 2000,
-            verticalPosition: 'top',
-            horizontalPosition: 'right'
+            duration: 1000,
+            verticalPosition: 'bottom',
+            horizontalPosition: 'center'
           });
         });
     }

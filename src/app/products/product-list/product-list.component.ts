@@ -46,9 +46,9 @@ export class ProductListComponent implements OnInit {
     
     this.snackBar.open('Delete successful', '', { 
       panelClass: 'sb-success',
-      duration: 2000,
-      verticalPosition: 'top',
-      horizontalPosition: 'right'
+      duration: 1000,
+      verticalPosition: 'bottom',
+      horizontalPosition: 'center'
     });
   });
 

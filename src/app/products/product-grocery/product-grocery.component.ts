@@ -69,9 +69,9 @@ export class ProductGroceryComponent implements OnInit {
     if (!this.groceriesForm.valid) {
       this.snackBar.open('Incomplete fields', '', { 
         panelClass: 'sb-warning',
-        duration: 2000,
-        verticalPosition: 'top',
-        horizontalPosition: 'right'
+        duration: 1000,
+        verticalPosition: 'bottom',
+        horizontalPosition: 'center'
       });
 
       return;
@@ -92,9 +92,9 @@ export class ProductGroceryComponent implements OnInit {
 
           this.snackBar.open('Save successful', '', { 
             panelClass: 'sb-success',
-            duration: 2000,
-            verticalPosition: 'top',
-            horizontalPosition: 'right'
+            duration: 1000,
+            verticalPosition: 'bottom',
+            horizontalPosition: 'center'
           });
         });
     }

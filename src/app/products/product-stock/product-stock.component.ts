@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
+import { MatPaginator, MatSnackBar, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../models/product.model';
 import { ProductsArray } from '../models/productsArray.model';
@@ -14,9 +14,12 @@ import { ProductService } from '../services/product.service';
 export class ProductStockComponent implements OnInit {
 
   displayedColumns: string[] = ['photo', 'name', 'stock', 'actions'];
+  dataSource;
 
   stockForm: FormGroup;
   products: Product[];
+
+  @ViewChild(MatPaginator, null) paginator: MatPaginator;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,8 +31,15 @@ export class ProductStockComponent implements OnInit {
    }
 
   ngOnInit() {
-    
     this.stockForm = this.generateForm();
+    
+    this.dataSource = new MatTableDataSource(this.products);
+    this.dataSource.paginator = this.paginator;
+  }
+
+  applyFilter = (event: Event) => {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   generateForm = (): FormGroup => {

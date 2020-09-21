@@ -27,7 +27,7 @@ import {
   MatMenuModule,
   MatToolbarModule,
   MatListModule,
-  MatProgressBarModule
+  MatProgressBarModule, MatSlideToggleModule
 } from '@angular/material';
 import { BlockUIModule } from 'ng-block-ui';
 import { FormLayoutComponent } from './components/form-layout/form-layout.component';
@@ -64,6 +64,7 @@ import { TableComponent } from './components/table/table.component';
     MatChipsModule,
     MatAutocompleteModule,
     MatCheckboxModule,
+    MatSlideToggleModule,
     MatSnackBarModule,
     BlockUIModule.forRoot({
       template: BlockTemplateComponent
@@ -92,6 +93,7 @@ import { TableComponent } from './components/table/table.component';
     MatPaginatorModule,
     MatAutocompleteModule,
     MatCheckboxModule,
+    MatSlideToggleModule,
     MatSidenavModule,
     MatMenuModule,
     MatToolbarModule,

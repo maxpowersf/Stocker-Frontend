@@ -22,3 +22,6 @@ th.actions {
 .mat-icon-button{
     margin-top: 5px;
 }
+.mat-slide-toggle-bar {
+    margin: auto;
+}

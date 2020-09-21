@@ -9,4 +9,5 @@ export class Product {
     stock: number;
     minimumAccepted: number;
     minimumRequired: number;
+    active: boolean;
 }

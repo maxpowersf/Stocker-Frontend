@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Product } from '../models/product.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../services/product.service';
-import { MatPaginator, MatSnackBar, MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatSlideToggleChange, MatSnackBar, MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-product-list',
@@ -25,7 +25,7 @@ export class ProductListComponent implements OnInit {
     private snackBar: MatSnackBar
   ) {
     this.products = this.route.snapshot.data.products;
-   }
+  }
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource(this.products);
@@ -38,13 +38,22 @@ export class ProductListComponent implements OnInit {
   }
 
   addAction = () => this.router.navigate(['new'], { relativeTo: this.route });
-  
+
   navigateToEdit = (id) => this.router.navigate([id, 'edit'], { relativeTo: this.route });
+
+  onChange = (event: MatSlideToggleChange, id) => {
+    this.productService.getOne(id).subscribe((res) => {
+      const productModified = res;
+      productModified.active = event.checked;
+
+      this.productService.update(productModified).subscribe(this.getAllProducts);
+    });
+  }
 
   onDelete = (id) => this.productService.delete(id).subscribe(() => {
     this.getAllProducts();
-    
-    this.snackBar.open('Delete successful', '', { 
+
+    this.snackBar.open('Delete successful', '', {
       panelClass: 'sb-success',
       duration: 1000,
       verticalPosition: 'bottom',

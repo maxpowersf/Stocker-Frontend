@@ -27,6 +27,7 @@ export class ProductFormComponent implements OnInit {
   get stock() { return this.productForm.get('stock'); }
   get minimumAccepted() { return this.productForm.get('minimumAccepted'); }
   get minimumRequired() { return this.productForm.get('minimumRequired'); }
+  get active() { return this.productForm.get('active'); }
 
   constructor(
     private fb: FormBuilder,
@@ -51,6 +52,7 @@ export class ProductFormComponent implements OnInit {
       this.stock.patchValue(this.product.stock);
       this.minimumAccepted.patchValue(this.product.minimumAccepted);
       this.minimumRequired.patchValue(this.product.minimumRequired);
+      this.active.patchValue(this.product.active);
     }
   }
 
@@ -68,7 +70,8 @@ export class ProductFormComponent implements OnInit {
     category: ['', Validators.required],
     stock: ['0.0', Validators.required],
     minimumAccepted: ['0.0', Validators.required],
-    minimumRequired: ['0.0', Validators.required]
+    minimumRequired: ['0.0', Validators.required],
+    active: [true]
   });
 
   onSubmit = () => {
@@ -81,6 +84,7 @@ export class ProductFormComponent implements OnInit {
     productModified.stock = this.stock.value;
     productModified.minimumAccepted = this.minimumAccepted.value;
     productModified.minimumRequired = this.minimumRequired.value;
+    productModified.active = this.active.value;
 
     this.isEditing
       ? this.productService.update(productModified)

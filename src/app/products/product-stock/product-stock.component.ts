@@ -116,7 +116,7 @@ export class ProductStockComponent implements OnInit {
     });
   }
 
-  myFunction = (event: Event) => {
+  applyFilter = (event: Event) => {
     let tableRows, txtValue;
 
     const filter = (event.target as HTMLInputElement).value.trim().toLowerCase();

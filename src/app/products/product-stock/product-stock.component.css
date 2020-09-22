@@ -13,6 +13,9 @@ th.actions {
 .cell-number{
     width: 75px;
 }
+.cell-photo {
+    width: 100px;
+}
 .input-number {
     width: 30px;
     text-align: center;

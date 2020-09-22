@@ -6,6 +6,8 @@ import { Product } from '../models/product.model';
 import { ProductsArray } from '../models/productsArray.model';
 import { ProductService } from '../services/product.service';
 
+declare var $: any;
+
 @Component({
   selector: 'app-product-stock',
   templateUrl: './product-stock.component.html',
@@ -26,17 +28,12 @@ export class ProductStockComponent implements OnInit {
     private snackBar: MatSnackBar
   ) {
     this.products = this.route.snapshot.data.products;
-   }
+  }
 
   ngOnInit() {
     this.stockForm = this.generateForm();
-    
-    this.dataSource = new MatTableDataSource(this.products);
-  }
 
-  applyFilter = (event: Event) => {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.dataSource = new MatTableDataSource(this.products);
   }
 
   generateForm = (): FormGroup => {
@@ -72,15 +69,15 @@ export class ProductStockComponent implements OnInit {
   }
 
   saveAction = () => {
-    if (!this.stockForm.valid) { 
-      this.snackBar.open('Incomplete fields', '', { 
+    if (!this.stockForm.valid) {
+      this.snackBar.open('Incomplete fields', '', {
         panelClass: 'sb-warning',
         duration: 1000,
         verticalPosition: 'bottom',
         horizontalPosition: 'center'
       });
 
-      return; 
+      return;
     }
 
     const products: ProductsArray = new ProductsArray();
@@ -89,12 +86,12 @@ export class ProductStockComponent implements OnInit {
       products.product.push(this.processProductsStock(element));
     });
 
-    if(products.product.length > 0){
+    if (products.product.length > 0) {
       this.productService.updateAll(products)
         .subscribe(() => {
           this.getProductsList();
 
-          this.snackBar.open('Save successful', '', { 
+          this.snackBar.open('Save successful', '', {
             panelClass: 'sb-success',
             duration: 1000,
             verticalPosition: 'bottom',
@@ -117,6 +114,23 @@ export class ProductStockComponent implements OnInit {
       this.products = res;
       this.stockForm = this.generateForm();
     });
+  }
+
+  applyFilter = (event: Event) => {
+    let tableRows, txtValue;
+
+    const filter = (event.target as HTMLInputElement).value.trim().toLowerCase();
+    tableRows = $('table.mat-table tbody tr');
+
+    for (let i = 0; i < tableRows.length; i++) {
+      txtValue = tableRows.eq(i).find('td:eq(1)').text().trim().toLowerCase();
+      if (txtValue.toLowerCase().indexOf(filter) > -1) {
+        tableRows.eq(i).show();
+      }
+      else {
+        tableRows.eq(i).hide();
+      }
+    }
   }
 
 }

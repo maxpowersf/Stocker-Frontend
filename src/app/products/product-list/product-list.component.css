@@ -16,12 +16,12 @@ th.actions {
 .cell-number{
     width: 75px;
 }
+.cell-photo {
+    width: 100px;
+}
 .mat-cell img {
     width: 40px;
 }
 .mat-icon-button{
     margin-top: 5px;
-}
-.mat-slide-toggle-bar {
-    margin: auto;
 }

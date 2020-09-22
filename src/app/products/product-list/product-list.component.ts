@@ -1,17 +1,19 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Product } from '../models/product.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../services/product.service';
 import { MatPaginator, MatSlideToggleChange, MatSnackBar, MatTableDataSource } from '@angular/material';
+
+declare var $:any;
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent implements OnInit {
+export class ProductListComponent implements OnInit, AfterViewInit {
 
-  displayedColumns: string[] = ['id', 'name', 'photo', 'category', 'stock', 'minimumAccepted', 'minimumRequired', 'actions'];
+  displayedColumns: string[] = ['id', 'photo', 'name', 'category', 'stock', 'minimumAccepted', 'minimumRequired', 'actions'];
   dataSource;
 
   products: Product[];
@@ -30,6 +32,10 @@ export class ProductListComponent implements OnInit {
   ngOnInit() {
     this.dataSource = new MatTableDataSource(this.products);
     this.dataSource.paginator = this.paginator;
+  }
+
+  ngAfterViewInit() {
+    $('.mat-slide-toggle-bar').addClass('m-auto');
   }
 
   applyFilter = (event: Event) => {

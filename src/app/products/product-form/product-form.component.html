@@ -18,6 +18,13 @@
             </mat-form-field>
             <img alt="photo" src="{{photoUrl}}" class="photo">
             <mat-form-field class="full-width">
+                <mat-select placeholder="Type" [formControl]="type">
+                    <mat-option *ngFor="let type of productTypes" [value]="type.value">
+                        {{type.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="full-width">
                 <mat-select placeholder="Categoría" [formControl]="category">
                     <mat-option *ngFor="let category of categories" [value]="category.id">
                         {{category.name}}

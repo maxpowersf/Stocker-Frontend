@@ -4,6 +4,7 @@ import { Product } from '../models/product.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProductService } from '../services/product.service';
 import { Category } from 'src/app/categories/models/category.model';
+import { ProductTypeMapping } from 'src/app/shared/models/producttype';
 
 @Component({
   selector: 'app-product-form',
@@ -11,18 +12,19 @@ import { Category } from 'src/app/categories/models/category.model';
   styleUrls: ['./product-form.component.css']
 })
 export class ProductFormComponent implements OnInit {
-
-  isEditing: boolean = false;
   productForm: FormGroup;
 
+  isEditing: boolean = false;
   product: Product = new Product();
 
   categories: Category[];
+  productTypes = ProductTypeMapping;
 
   photoUrl: string = "https://static.cotodigital3.com.ar/sitios/fotos/medium/99999900/99999999.jpg";
 
   get name() { return this.productForm.get('name'); }
   get photo() { return this.productForm.get('photo'); }
+  get type() { return this.productForm.get('type') };
   get category() { return this.productForm.get('category'); }
   get stock() { return this.productForm.get('stock'); }
   get minimumAccepted() { return this.productForm.get('minimumAccepted'); }
@@ -48,6 +50,7 @@ export class ProductFormComponent implements OnInit {
       this.name.patchValue(this.product.name);
       this.photo.patchValue(this.product.photo);
       this.photoUrl = this.product.photo;
+      this.type.patchValue(this.product.type);
       this.category.patchValue(this.product.category.id);
       this.stock.patchValue(this.product.stock);
       this.minimumAccepted.patchValue(this.product.minimumAccepted);
@@ -67,6 +70,7 @@ export class ProductFormComponent implements OnInit {
   modelCreate = () => this.fb.group({
     name: ['', Validators.required],
     photo: ['https://static.cotodigital3.com.ar/sitios/fotos/medium/99999900/99999999.jpg'],
+    type: ['', Validators.required],
     category: ['', Validators.required],
     stock: ['0.0', Validators.required],
     minimumAccepted: ['0.0', Validators.required],
@@ -80,6 +84,7 @@ export class ProductFormComponent implements OnInit {
     productModified.id = this.product.id;
     productModified.name = this.name.value;
     productModified.photo = this.photo.value;
+    productModified.type = this.type.value;
     productModified.categoryId = this.category.value;
     productModified.stock = this.stock.value;
     productModified.minimumAccepted = this.minimumAccepted.value;

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
+import { ProductType } from 'src/app/shared/models/producttype';
 import { Product } from '../models/product.model';
 import { ProductsArray } from '../models/productsArray.model';
 import { ProductService } from '../services/product.service';
@@ -39,7 +40,7 @@ export class ProductStockComponent implements OnInit {
   generateForm = (): FormGroup => {
     let productsListArray = [];
     this.products.forEach((product) => {
-      productsListArray.push(this.productModelCreate(product.id, product.stock))
+      productsListArray.push(this.productModelCreate(product.id, product.type, product.stock))
     });
 
     return this.stockModelCreate(productsListArray);
@@ -51,21 +52,53 @@ export class ProductStockComponent implements OnInit {
     });
   }
 
-  productModelCreate = (productId: number, stock: number) => this.fb.group({
+  productModelCreate = (productId: number, productType: number, stock: number) => this.fb.group({
     id: [productId],
+    type: [productType],
     newStock: [stock, Validators.required]
   });
 
-  increase = (formElementIndex) => {
-    const productsStock = this.stockForm.get('productsForm') as FormArray;
-    let productElement = productsStock.controls[formElementIndex].get('newStock');
-    productElement.patchValue(productElement.value + 1);
+  applyFilter = (event: Event) => {
+    let tableRows, txtValue;
+
+    const filter = (event.target as HTMLInputElement).value.trim().toLowerCase();
+    tableRows = $('table.mat-table tbody tr');
+
+    for (let i = 0; i < tableRows.length; i++) {
+      txtValue = tableRows.eq(i).find('td:eq(1)').text().trim().toLowerCase();
+      if (txtValue.toLowerCase().indexOf(filter) > -1) {
+        tableRows.eq(i).show();
+      }
+      else {
+        tableRows.eq(i).hide();
+      }
+    }
   }
 
-  decrease = (formElementIndex) => {
+  changeStock = (formElementIndex, increase) => {
     const productsStock = this.stockForm.get('productsForm') as FormArray;
     let productElement = productsStock.controls[formElementIndex].get('newStock');
-    productElement.patchValue(productElement.value - 1);
+    let productType = productsStock.controls[formElementIndex].get('type').value;
+    let amount = 1;
+
+    switch (productType) {
+      case ProductType.ByUnit:
+        amount = 1;
+        break;
+      case ProductType.ByWeight100:
+        amount = 0.100;
+        break;
+      case ProductType.ByWeight250:
+        amount = 0.250;
+        break;
+    }
+
+    if (increase) {
+      productElement.patchValue(productElement.value + amount);
+    }
+    else {
+      productElement.patchValue(productElement.value - amount);
+    }
   }
 
   saveAction = () => {
@@ -114,23 +147,6 @@ export class ProductStockComponent implements OnInit {
       this.products = res;
       this.stockForm = this.generateForm();
     });
-  }
-
-  applyFilter = (event: Event) => {
-    let tableRows, txtValue;
-
-    const filter = (event.target as HTMLInputElement).value.trim().toLowerCase();
-    tableRows = $('table.mat-table tbody tr');
-
-    for (let i = 0; i < tableRows.length; i++) {
-      txtValue = tableRows.eq(i).find('td:eq(1)').text().trim().toLowerCase();
-      if (txtValue.toLowerCase().indexOf(filter) > -1) {
-        tableRows.eq(i).show();
-      }
-      else {
-        tableRows.eq(i).hide();
-      }
-    }
   }
 
 }

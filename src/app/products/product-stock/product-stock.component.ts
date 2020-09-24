@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar, MatTableDataSource } from '@angular/material';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductType } from 'src/app/shared/models/producttype';
 import { Product } from '../models/product.model';
 import { ProductsArray } from '../models/productsArray.model';
@@ -23,6 +23,7 @@ export class ProductStockComponent implements OnInit {
   products: Product[];
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private productService: ProductService,
@@ -101,6 +102,8 @@ export class ProductStockComponent implements OnInit {
     }
   }
 
+  navigateToEdit = (id) => this.router.navigate([id, 'edit'], { relativeTo: this.route });
+
   saveAction = () => {
     if (!this.stockForm.valid) {
       this.snackBar.open('Incomplete fields', '', {
@@ -146,6 +149,8 @@ export class ProductStockComponent implements OnInit {
     this.productService.getAll().subscribe((res) => {
       this.products = res;
       this.stockForm = this.generateForm();
+
+      this.dataSource.data = res;
     });
   }
 

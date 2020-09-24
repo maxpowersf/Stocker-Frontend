@@ -32,6 +32,14 @@ const routes: Routes = [
     }
   },
   {
+    path: 'stock/:id/edit',
+    component: ProductFormComponent,
+    resolve: {
+      categories: CategoriesResolver,
+      product: ProductResolver
+    }
+  },
+  {
     path: 'new',
     component: ProductFormComponent,
     resolve: {

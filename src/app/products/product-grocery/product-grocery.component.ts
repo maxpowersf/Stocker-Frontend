@@ -122,8 +122,9 @@ export class ProductGroceryComponent implements OnInit {
   getGroceriesList = () => {
     this.productService.getGroceryList().subscribe((res) => {
       this.products = res;
-      this.dataSource.data = res;
       this.groceriesForm = this.generateForm();
+
+      this.dataSource.data = res;
     });
   }
 

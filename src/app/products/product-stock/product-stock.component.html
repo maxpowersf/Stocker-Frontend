@@ -33,7 +33,8 @@
                 <!-- Name Column -->
                 <ng-container matColumnDef="name">
                     <th mat-header-cell *matHeaderCellDef class="left"> Name </th>
-                    <td mat-cell *matCellDef="let element" class="left"> {{element.name}} </td>
+                    <td mat-cell *matCellDef="let element" matTooltip="Edit" [matTooltipPosition]="'above'"
+                    (click)="navigateToEdit(element.id)" class="clickable left"> {{element.name}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="stock">

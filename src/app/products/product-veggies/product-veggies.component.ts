@@ -1,20 +1,20 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Product } from '../models/product.model';
-import { Router, ActivatedRoute } from '@angular/router';
-import { ProductService } from '../services/product.service';
-import { FormGroup, FormBuilder, FormArray, AbstractControl } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { AbstractControl, FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar, MatTableDataSource } from '@angular/material';
-import { ProductsArray } from '../models/productsArray.model';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CategoryType } from 'src/app/shared/models/categorytype.enum';
+import { Product } from '../models/product.model';
+import { ProductsArray } from '../models/productsArray.model';
+import { ProductService } from '../services/product.service';
 
 declare var $: any;
 
 @Component({
-  selector: 'app-product-grocery',
-  templateUrl: './product-grocery.component.html',
-  styleUrls: ['./product-grocery.component.css']
+  selector: 'app-product-veggies',
+  templateUrl: './product-veggies.component.html',
+  styleUrls: ['./product-veggies.component.css']
 })
-export class ProductGroceryComponent implements OnInit {
+export class ProductVeggiesComponent implements OnInit {
 
   displayedColumns: string[] = ['photo', 'name', 'stock', 'actions'];
   dataSource;
@@ -30,7 +30,7 @@ export class ProductGroceryComponent implements OnInit {
     private snackBar: MatSnackBar
   ) {
     this.products = this.route.snapshot.data.products;
-  }
+   }
 
   ngOnInit() {
     this.groceriesForm = this.generateForm();
@@ -121,7 +121,7 @@ export class ProductGroceryComponent implements OnInit {
   }
 
   getGroceriesList = () => {
-    this.productService.getGroceryList(CategoryType.Supermarket).subscribe((res) => {
+    this.productService.getGroceryList(CategoryType.Veggies).subscribe((res) => {
       this.products = res;
       this.groceriesForm = this.generateForm();
 

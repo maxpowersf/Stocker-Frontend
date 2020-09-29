@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProductType } from 'src/app/shared/models/producttype';
+import { ProductType } from 'src/app/shared/models/producttype.enum';
 import { Product } from '../models/product.model';
 import { ProductsArray } from '../models/productsArray.model';
 import { ProductService } from '../services/product.service';

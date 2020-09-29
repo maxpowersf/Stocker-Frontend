@@ -8,6 +8,10 @@ import { CategoriesResolver } from '../categories/resolvers/categories.resolver'
 import { ProductGroceryComponent } from './product-grocery/product-grocery.component';
 import { GroceriesResolver } from './resolvers/groceries.resolver';
 import { ProductStockComponent } from './product-stock/product-stock.component';
+import { ProductVeggiesComponent } from './product-veggies/product-veggies.component';
+import { ProductSpicesComponent } from './product-spices/product-spices.component';
+import { VeggiesResolver } from './resolvers/veggies.resolver';
+import { SpicesResolver } from './resolvers/spices.resolver';
 
 const routes: Routes = [
   {
@@ -18,10 +22,24 @@ const routes: Routes = [
     }
   },
   {
-    path: 'groceries',
+    path: 'groceries/:id',
     component: ProductGroceryComponent,
     resolve: {
       products: GroceriesResolver
+    }
+  },
+  {
+    path: 'veggies/:id',
+    component: ProductVeggiesComponent,
+    resolve: {
+      products: VeggiesResolver
+    }
+  },
+  {
+    path: 'spices/:id',
+    component: ProductSpicesComponent,
+    resolve: {
+      products: SpicesResolver
     }
   },
   {

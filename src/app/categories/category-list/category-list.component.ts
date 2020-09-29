@@ -13,7 +13,7 @@ import { MatSnackBar } from '@angular/material';
 })
 export class CategoryListComponent implements OnInit {
 
-  headerRows = ['id', 'name'];
+  headerRows = ['id', 'name', 'typeName'];
 
   data: Category[];
   tableData: TableLayout;

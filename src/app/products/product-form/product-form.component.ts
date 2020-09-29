@@ -4,7 +4,7 @@ import { Product } from '../models/product.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProductService } from '../services/product.service';
 import { Category } from 'src/app/categories/models/category.model';
-import { ProductTypeMapping } from 'src/app/shared/models/producttype';
+import { ProductTypeMapping } from 'src/app/shared/models/producttype.enum';
 
 @Component({
   selector: 'app-product-form',

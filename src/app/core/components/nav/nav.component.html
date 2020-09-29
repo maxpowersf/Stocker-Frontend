@@ -20,8 +20,14 @@
             <a mat-list-item [routerLink]="['products/stock']" (click)="drawer.toggle()">
                 <mat-icon class="icon_menu">storefront</mat-icon> Stock
             </a>
-            <a mat-list-item [routerLink]="['products/groceries']" (click)="drawer.toggle()">
-                <mat-icon class="icon_menu">shopping_cart</mat-icon> Grocery List
+            <a mat-list-item [routerLink]="['products/groceries', supermarketId]" (click)="drawer.toggle()">
+                <mat-icon class="icon_menu">shopping_cart</mat-icon> Supermercado
+            </a>
+            <a mat-list-item [routerLink]="['products/veggies', veggiesId]" (click)="drawer.toggle()">
+                <mat-icon class="icon_menu">shopping_cart</mat-icon> Verdulería
+            </a>
+            <a mat-list-item [routerLink]="['products/spices', spicesId]" (click)="drawer.toggle()">
+                <mat-icon class="icon_menu">shopping_cart</mat-icon> Dietética
             </a>
             <h2 matSubheader>Admin</h2>
             <a mat-list-item [routerLink]="['categories']" (click)="drawer.toggle()">

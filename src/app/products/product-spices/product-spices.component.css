@@ -1,0 +1,39 @@
+.mat-header-cell,
+.mat-cell{
+    text-align: center;
+}
+th.left,
+td.left{
+    text-align: left;
+    padding-left: 20px;
+}
+th.actions {
+    width: 140px;
+}
+.cell-number{
+    width: 75px;
+}
+.cell-photo {
+    width: 100px;
+}
+.input-number {
+    width: 30px;
+    text-align: center;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type=number] {
+    -moz-appearance:textfield;
+}
+.mat-cell img {
+    width: 40px;
+}
+.mat-icon-button{
+    margin-top: 5px;
+}
+.warning {
+    background-color: #d82508c4;
+}

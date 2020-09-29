@@ -4,6 +4,7 @@ import { FormLayout } from 'src/app/shared/models/form-layout.model';
 import { Category } from '../models/category.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CategoryService } from '../services/category.service';
+import { CategoryTypeMapping } from 'src/app/shared/models/categorytype.enum';
 
 @Component({
   selector: 'app-category-form',
@@ -16,8 +17,10 @@ export class CategoryFormComponent implements OnInit {
 
   isEditing: boolean;
   category: Category = new Category();
+  categoryTypes = CategoryTypeMapping;
 
   get name() { return this.categoryForm.get('name'); }
+  get type() { return this.categoryForm.get('type') };
 
   constructor(
     private fb: FormBuilder,
@@ -41,6 +44,7 @@ export class CategoryFormComponent implements OnInit {
 
       this.category = this.route.snapshot.data.category;
       this.name.patchValue(this.category.name);
+      this.type.patchValue(this.category.type);
     }
     else {
       this.formInfo = {
@@ -53,7 +57,8 @@ export class CategoryFormComponent implements OnInit {
   }
 
   modelCreate = () => this.fb.group({
-    name: ['', Validators.required]
+    name: ['', Validators.required],
+    type: ['', Validators.required]
   })
 
   onSubmit = () => {
@@ -61,6 +66,7 @@ export class CategoryFormComponent implements OnInit {
     const categoryModified = new Category();
     categoryModified.id = this.category.id;
     categoryModified.name = this.name.value;
+    categoryModified.type = this.type.value;
 
     this.isEditing
       ? this.categoryService.update(categoryModified)

@@ -19,8 +19,8 @@ export class ProductService {
     private httpClient: HttpClient
   ) { }
 
-  public getGroceryList(): Observable<Product[]> {
-    return this.httpClient.get<Product[]>(this.productUrl + '/true/true');
+  public getGroceryList(categoryId: number): Observable<Product[]> {
+    return this.httpClient.get<Product[]>(this.productUrl + '/true/true/' + categoryId);
   }
 
   public getAll(): Observable<Product[]> {

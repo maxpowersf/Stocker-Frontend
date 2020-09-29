@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { ProductService } from '../services/product.service';
 
 @Injectable({providedIn: 'root'})
-export class GroceriesResolver implements Resolve<Observable<any>> {
+export class SpicesResolver implements Resolve<Observable<any>> {
     constructor(
         private productService: ProductService
     ) { }

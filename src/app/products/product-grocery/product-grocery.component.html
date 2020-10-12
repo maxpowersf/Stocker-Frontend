@@ -53,7 +53,7 @@
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{
-                'warning': row.stock < row.minimumRequired
+                'warning': row.stock <= row.minimumRequired
             }"></tr>
             </table>
         </form>

@@ -14,7 +14,7 @@
     <mat-card-subtitle></mat-card-subtitle>
     <mat-card-content>
         <mat-form-field class="filter-field">
-            <input matInput (keyup)="applyFilter($event)" placeholder="Filter..">
+            <input matInput (keyup)="applyFilter($event)" placeholder="Filter.." autocomplete="off">
         </mat-form-field>
         <form [formGroup]="stockForm">
             <table mat-table formArrayName="productsForm" [dataSource]="dataSource" class="mat-elevation-z8">

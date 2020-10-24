@@ -94,12 +94,29 @@ export class ProductStockComponent implements OnInit {
         break;
     }
 
+    let newStock;
     if (increase) {
-      productElement.patchValue(productElement.value + amount);
+      if (productType == ProductType.ByUnit && productElement.value == 0.5) {
+        newStock = 1;
+      }
+      else {
+        newStock = Math.round(((productElement.value + amount) + Number.EPSILON) * 100) / 100;
+      }
     }
     else {
-      productElement.patchValue(productElement.value - amount);
+      if ((productElement.value <= 0.100 && productType != ProductType.ByUnit) ||
+        (productElement.value <= 0.5 && productType == ProductType.ByUnit)) {
+        newStock = 0;
+      }
+      else if (productType == ProductType.ByUnit && productElement.value == 1) {
+        newStock = Math.round((0.5 + Number.EPSILON) * 100) / 100;
+      }
+      else {
+        newStock = Math.round(((productElement.value - amount) + Number.EPSILON) * 100) / 100;
+      }
     }
+
+    productElement.patchValue(newStock);
   }
 
   navigateToEdit = (id) => this.router.navigate([id, 'edit'], { relativeTo: this.route });
